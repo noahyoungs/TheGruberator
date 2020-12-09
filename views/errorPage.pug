@@ -1,0 +1,6 @@
+extends layout
+
+block errors
+    h1 something went wrong
+    div(style="background: maroon; color: white")
+        = error.message

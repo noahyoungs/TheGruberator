@@ -1,0 +1,25 @@
+extends layout
+
+block content
+    if error
+        div.alert.alert-danger
+            = error
+
+    // mini nav
+    a(href='/' class="btn btn-primary" style="float: right;") home
+    a(href='/login' class="btn btn-secondary" style="float: right;") login
+
+    h1 Register
+
+    form(action="/register" method="POST")
+        .form-group
+            label Username
+            input.form-control(type='text' placeholder='Enter username' name="username")
+        .form-group
+            label Email address
+            input.form-control(type='email' aria-describedby='emailHelp' placeholder='Email' name="email")
+            small.form-text.text-muted We&apos;ll never share your email with anyone else.
+        .form-group
+            label Password
+            input.form-control(type='password' placeholder='Password' name="password")
+        button.btn.btn-primary(type='submit') Submit

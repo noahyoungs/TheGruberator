@@ -1,0 +1,20 @@
+* {
+    line-height: 1.6;
+    color: #333;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+body {
+    padding: 10px;
+    background-color: #f8f8ff;
+}
+
+#body h1 {
+    /*bootstrap override*/
+    margin-bottom: 20px;
+}
+
+#body select.custom-select {
+    /*bootstrap override*/
+    max-width: 120px;
+}

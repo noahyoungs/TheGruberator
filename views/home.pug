@@ -1,0 +1,74 @@
+extends layout
+
+block content
+
+    //login area
+    if user
+        form(action="/logout" method ="POST")
+            button(class="btn btn-secondary" type="submit" style="float: right;") logout
+    else
+        a(href='/register' class="btn btn-primary" style="float: right;") register
+        a(href='/login' class="btn btn-secondary" style="float: right;") login
+
+    h1 Welcome to the message board!
+
+    ul.list-group
+
+        //display messages based on type
+        each message in messages
+            case message.kind
+                when 0
+                    li.list-group-item
+                        span.badge.badge-light
+                            = "@" + message.authorName
+                        | &nbsp;&nbsp;
+                        = message.content
+                when 1
+                    li.list-group-item.list-group-item-primary
+                        span.badge.badge-primary
+                            = "@" + message.authorName
+                        | &nbsp;&nbsp;
+                        = message.content
+                when 2
+                    li.list-group-item.list-group-item-secondary
+                        span.badge.badge-secondary
+                            = "@" + message.authorName
+                        | &nbsp;&nbsp;
+                        = message.content
+                when 3
+                    li.list-group-item.list-group-item-success
+                        span.badge.badge-success
+                            = "@" + message.authorName
+                        | &nbsp;&nbsp;
+                        = message.content
+                when 4
+                    li.list-group-item.list-group-item-danger
+                        span.badge.badge-danger
+                            = "@" + message.authorName
+                        | &nbsp;&nbsp;
+                        = message.content
+                when 5
+                    li.list-group-item.list-group-item-info
+                        span.badge.badge-info
+                            = "@" + message.authorName
+                        | &nbsp;&nbsp;
+                        = message.content
+
+    if user
+        // form bar for typing messages
+        form.input-group(action="/message" method ="POST")
+            .input-group-prepend
+                span.input-group-text(id='username')
+                    = "@" + user.username
+            input.form-control(type='text' placeholder="message" name="message")
+            select.custom-select(name='kind')
+                option(selected='' value='0') Default
+                option(value='1') Primary
+                option(value='2') Secondary
+                option(value='3') Success
+                option(value='4') Danger
+                option(value='5') Info
+            .input-group-append
+                button.btn.btn-outline-primary(type='submit' name="action" value="post" action="/message") Post
+                button.btn.btn-outline-danger(type='submit' name="action" value="clear" action="/message") Clear All
+
