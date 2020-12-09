@@ -18,3 +18,15 @@ body {
     /*bootstrap override*/
     max-width: 120px;
 }
+
+#body .box {
+    padding: 40px;
+}
+
+.slider {
+    width: 100%;
+}
+
+.right {
+    text-align: center;
+}

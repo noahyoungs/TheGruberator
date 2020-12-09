@@ -12,63 +12,60 @@ block content
 
     h1 Welcome to the message board!
 
-    ul.list-group
+    .container.rounded.border.border-secondary
+        .row
+            .col-xs-12.col-sm-12.col-lg-6.box
+                form
+                    h3.mb-4 Your Preferences
+                    .mb-3
+                        label.form-label(for='formFastFoodIndex') Slower (Sit Down) / Faster (Fast Food)
+                        input#formFastFoodIndex.form-range.slider(type='range')
 
+                    .mb-5
+                        label.form-label(for='formPriceIndex') Lower Price / Higher Price
+                        input#formPriceIndex.form-range.slider(type='range')
+
+                    .mb-3
+                        label.form-label(for='formAmericanIndex') American Food Preference
+                        input#formAmericanIndex.form-range.slider(type='range')
+
+                    .mb-3
+                        label.form-label(for='formMexicanIndex') Mexican Food Preference
+                        input#formMexicanIndex.form-range.slider(type='range')
+
+                    .mb-3
+                        label.form-label(for='formChineseIndex') Chinese Food Preference
+                        input#formChineseIndex.form-range.slider(type='range')
+
+                    .mb-3
+                        label.form-label(for='formPizzaIndex') Pizza Preference
+                        input#formPizzaIndex.form-range.slider(type='range')
+
+                    .mb-3
+                        label.form-label(for='formAlcoholIndex') Alcohol Preference
+                        input#formAlcoholIndex.form-range.slider(type='range')
+
+                    .mb-5
+                        label.form-label(for='formMusicIndex') Live Music/Entertainment Preference
+                        input#formMusicIndex.form-range.slider(type='range')
+
+
+
+                    button.btn.btn-primary(type='submit') Update
+
+
+
+            .col-xs-12.col-sm-12.col-lg-6.box
+                // right column : begin Search
+                h3.mb-4 Begin Search
+                h6 Included Users
+                .card.mb-5
+                    .card-body
+
+                .input-group.mb-3
+                    input.form-control(type='text' placeholder="Add username")
+                    .input-group-append
+                        button#button-addon2.btn.btn-outline-secondary(type='button') Add
+
+                button.btn.btn-primary(type='submit') Begin Search
         //display messages based on type
-        each message in messages
-            case message.kind
-                when 0
-                    li.list-group-item
-                        span.badge.badge-light
-                            = "@" + message.authorName
-                        | &nbsp;&nbsp;
-                        = message.content
-                when 1
-                    li.list-group-item.list-group-item-primary
-                        span.badge.badge-primary
-                            = "@" + message.authorName
-                        | &nbsp;&nbsp;
-                        = message.content
-                when 2
-                    li.list-group-item.list-group-item-secondary
-                        span.badge.badge-secondary
-                            = "@" + message.authorName
-                        | &nbsp;&nbsp;
-                        = message.content
-                when 3
-                    li.list-group-item.list-group-item-success
-                        span.badge.badge-success
-                            = "@" + message.authorName
-                        | &nbsp;&nbsp;
-                        = message.content
-                when 4
-                    li.list-group-item.list-group-item-danger
-                        span.badge.badge-danger
-                            = "@" + message.authorName
-                        | &nbsp;&nbsp;
-                        = message.content
-                when 5
-                    li.list-group-item.list-group-item-info
-                        span.badge.badge-info
-                            = "@" + message.authorName
-                        | &nbsp;&nbsp;
-                        = message.content
-
-    if user
-        // form bar for typing messages
-        form.input-group(action="/message" method ="POST")
-            .input-group-prepend
-                span.input-group-text(id='username')
-                    = "@" + user.username
-            input.form-control(type='text' placeholder="message" name="message")
-            select.custom-select(name='kind')
-                option(selected='' value='0') Default
-                option(value='1') Primary
-                option(value='2') Secondary
-                option(value='3') Success
-                option(value='4') Danger
-                option(value='5') Info
-            .input-group-append
-                button.btn.btn-outline-primary(type='submit' name="action" value="post" action="/message") Post
-                button.btn.btn-outline-danger(type='submit' name="action" value="clear" action="/message") Clear All
-
