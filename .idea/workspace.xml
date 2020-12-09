@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="53d0396a-0877-4d86-b5bf-74bf078b31da" name="Default Changelist" comment="initial login page with message board">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/001-initial-schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/001-initial-schema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/home.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/home.pug" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/layout.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/layout.pug" afterDir="false" />
-    </list>
+    <list default="true" id="53d0396a-0877-4d86-b5bf-74bf078b31da" name="Default Changelist" comment="Added front end interface for user preferences and search, added preferences to user table in database" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -66,7 +60,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1607489450061</updated>
-      <workItem from="1607489451259" duration="11748000" />
+      <workItem from="1607489451259" duration="12179000" />
     </task>
     <task id="LOCAL-00001" summary="initial login page with message board">
       <created>1607490416049</created>
@@ -75,7 +69,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607490416049</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added front end interface for user preferences and search, added preferences to user table in database">
+      <created>1607504939173</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1607504939174</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -84,7 +85,8 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <MESSAGE value="initial login page with message board" />
-    <option name="LAST_COMMIT_MESSAGE" value="initial login page with message board" />
+    <MESSAGE value="Added front end interface for user preferences and search, added preferences to user table in database" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added front end interface for user preferences and search, added preferences to user table in database" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
