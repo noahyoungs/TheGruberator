@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="53d0396a-0877-4d86-b5bf-74bf078b31da" name="Default Changelist" comment="Added front end interface for user preferences and search, added preferences to user table in database" />
+    <list default="true" id="53d0396a-0877-4d86-b5bf-74bf078b31da" name="Default Changelist" comment="deleted message board and fixed title">
+      <change afterPath="$PROJECT_DIR$/READMEwriteUpOfInstructions" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/773bda55-c2ac-4347-80ec-706e0ccc2c85.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/773bda55-c2ac-4347-80ec-706e0ccc2c85.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/001-initial-schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/001-initial-schema.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/home.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/home.pug" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,6 +40,8 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="watcher.settings" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="npm.start">
@@ -60,7 +71,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1607489450061</updated>
-      <workItem from="1607489451259" duration="12179000" />
+      <workItem from="1607489451259" duration="24677000" />
+      <workItem from="1607570612379" duration="5277000" />
+      <workItem from="1607725781061" duration="16203000" />
     </task>
     <task id="LOCAL-00001" summary="initial login page with message board">
       <created>1607490416049</created>
@@ -76,17 +89,37 @@
       <option name="project" value="LOCAL" />
       <updated>1607504939174</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="deleted message board and fixed title">
+      <created>1607510578938</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1607510578938</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT" value="true" />
     <MESSAGE value="initial login page with message board" />
     <MESSAGE value="Added front end interface for user preferences and search, added preferences to user table in database" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added front end interface for user preferences and search, added preferences to user table in database" />
+    <MESSAGE value="deleted message board and fixed title" />
+    <option name="LAST_COMMIT_MESSAGE" value="deleted message board and fixed title" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

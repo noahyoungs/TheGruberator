@@ -45,17 +45,41 @@ app.use(async (req, res, next) => {
     next();
 })
 
+let searchUsers = []
+
 app.get("/", async (req, res) => {
     const db = await dbPromise;
-    const messages = await db.all(`SELECT Messages.id,
-                                          Messages.content,
-                                          Messages.kind,
-                                          Users.username as authorName
-                                   FROM Messages
-                                            LEFT JOIN Users
-                                   WHERE Messages.authorId = Users.id`);
-    console.log('messages', messages);
-    res.render("home", {messages, user: req.user});
+
+    if (!req.user) {
+        res.redirect('/login');
+    }
+    const userPrefs = await db.all("SELECT * FROM Users WHERE Users.id = ?", req.user.id);
+    const restaurants = await db.all("SELECT * FROM Restaurants");
+
+
+    let restaurant
+    let user
+    for (restaurant of restaurants) {
+        let tempCount = 0;
+        for (user of searchUsers) {
+            tempCount += ((Math.abs(restaurant.fastFoodIndex - user.fastFoodIndex) +
+                Math.abs(restaurant.priceIndex - user.priceIndex) +
+                Math.abs(restaurant.americanIndex - user.americanIndex) +
+                Math.abs(restaurant.mexicanIndex - user.mexicanIndex) +
+                Math.abs(restaurant.chineseIndex - user.chineseIndex) +
+                Math.abs(restaurant.pizzaIndex - user.pizzaIndex) +
+                Math.abs(restaurant.alcoholIndex - user.alcoholIndex) +
+                Math.abs(restaurant.musicIndex - user.musicIndex)) / 8)
+        }
+        restaurant.score = 1 - (tempCount / 3);
+    }
+    console.log('restaraunts', restaurants);
+
+
+    console.log('user prefs', userPrefs);
+    res.render("home", {userPrefs, user: req.user, searchUsers, restaurants});
+
+
 });
 
 app.get('/register', (req, res) => {
@@ -123,26 +147,49 @@ app.post('/logout', async (req, res) => {
     res.redirect('/');
 });
 
+app.post('/clear', async (req, res) => {
+    searchUsers = [];
+    res.redirect('/');
+});
+app.post("/add", async (req, res, next) => {
+    if (!req.user) {
+        return next({
+            status: 401,
+            message: 'must be logged in to do this'
+        })
+    }
+    const db = await dbPromise;
+    console.log("looking for username " + req.body.username)
 
-app.post("/message", async (req, res, next) => {
+    const addedUser = await db.get('SELECT * FROM Users WHERE username=?', req.body.username);
+
+    if (!addedUser) {
+        return next({
+            status: 404,
+            message: 'that is not a user'
+        })
+    }
+    searchUsers.push(addedUser)
+    console.log(" pushed username " + addedUser.username)
+    console.log("search users: " + searchUsers)
+
+    res.redirect('/');
+})
+
+app.post("/updateUserPrefs", async (req, res, next) => {
 
     if (!req.user) {
         return next({
             status: 401,
-            message: 'must be logged in to post'
+            message: 'must be logged in to do this'
         })
     }
     const db = await dbPromise;
-
-    if (req.body.action == "clear") {
-        await db.run('DELETE FROM Messages;')
-        res.redirect("/");
-        return;
-    }
-
-    await db.run('INSERT INTO Messages (content, authorId, kind) VALUES (?, ?, ?);',
-        req.body.message, req.user.id, req.body.kind)
+    await db.run('Update Users SET fastFoodIndex = ?, priceIndex = ?, americanIndex = ?, mexicanIndex = ?, chineseIndex = ?, pizzaIndex = ?, alcoholIndex = ? , musicIndex = ? WHERE id = ?;',
+        req.body.formFastFoodIndex, req.body.formPriceIndex, req.body.formAmericanIndex, req.body.formMexicanIndex, req.body.formChineseIndex, req.body.formPizzaIndex, req.body.formAlcoholIndex, req.body.formMusicIndex, req.user.id)
     res.redirect("/");
+
+    console.log("updated user prefs for " + req.user)
 })
 
 
@@ -166,7 +213,7 @@ const setup = async () => {
     await db.migrate();
 
     app.listen(8080, () => {
-        console.log("listening on http://localhost:8080");
+        console.log("listening on http://127.0.0.1:8080");
     });
 }
 

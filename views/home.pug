@@ -10,62 +10,90 @@ block content
         a(href='/register' class="btn btn-primary" style="float: right;") register
         a(href='/login' class="btn btn-secondary" style="float: right;") login
 
-    h1 The Gruberator
+    h1.mb-4 The Gruberator
 
-    .container.rounded.border.border-secondary
+    .container.rounded
         .row
             .col-xs-12.col-sm-12.col-lg-6.box
-                form
+                form(action="/updateUserPrefs" method ="POST")
                     h3.mb-4 Your Preferences
                     .mb-3
                         label.form-label(for='formFastFoodIndex') Slower (Sit Down) / Faster (Fast Food)
-                        input#formFastFoodIndex.form-range.slider(type='range')
+                        input#formFastFoodIndex.form-range.slider(name="formFastFoodIndex" type='range' min="0" max="1"  step="0.1")
 
                     .mb-5
                         label.form-label(for='formPriceIndex') Lower Price / Higher Price
-                        input#formPriceIndex.form-range.slider(type='range')
+                        input#formPriceIndex.form-range.slider(name="formPriceIndex" type='range' min="0" max="1" value=priceIndex step="0.1")
 
                     .mb-3
                         label.form-label(for='formAmericanIndex') American Food Preference
-                        input#formAmericanIndex.form-range.slider(type='range')
+                        input#formAmericanIndex.form-range.slider(name="formAmericanIndex" type='range' min="0" max="1" value=americanIndex step="0.1")
 
                     .mb-3
                         label.form-label(for='formMexicanIndex') Mexican Food Preference
-                        input#formMexicanIndex.form-range.slider(type='range')
+                        input#formMexicanIndex.form-range.slider(name="formMexicanIndex" type='range' min="0" max="1" value=mexicanIndex step="0.1")
 
                     .mb-3
                         label.form-label(for='formChineseIndex') Chinese Food Preference
-                        input#formChineseIndex.form-range.slider(type='range')
+                        input#formChineseIndex.form-range.slider(name="formChineseIndex" type='range' min="0" max="1" value=chineseIndex step="0.1")
 
                     .mb-3
                         label.form-label(for='formPizzaIndex') Pizza Preference
-                        input#formPizzaIndex.form-range.slider(type='range')
+                        input#formPizzaIndex.form-range.slider(name="formPizzaIndex" type='range' min="0" max="1" value=pizzaIndex step="0.1")
 
                     .mb-3
                         label.form-label(for='formAlcoholIndex') Alcohol Preference
-                        input#formAlcoholIndex.form-range.slider(type='range')
+                        input#formAlcoholIndex.form-range.slider(name="formAlcoholIndex" type='range' min="0" max="1" value=alcoholIndex step="0.1")
 
                     .mb-5
                         label.form-label(for='formMusicIndex') Live Music/Entertainment Preference
-                        input#formMusicIndex.form-range.slider(type='range')
+                        input#formMusicIndex.form-range.slider(name="formMusicIndex" type='range' min="0" max="1" value=musicIndex step="0.1")
 
 
 
-                    button.btn.btn-primary(type='submit') Update
+                    button.btn.btn-primary.mb-5(type='submit') Update
 
 
 
             .col-xs-12.col-sm-12.col-lg-6.box
                 // right column : begin Search
                 h3.mb-4 Begin Search
-                h6 Included Users
+                h6 Included Group Users
                 .card.mb-5
                     .card-body
+                        each user in searchUsers
+                            span.badge.bg-primary= user.username
+                            |
 
-                .input-group.mb-3
-                    input.form-control(type='text' placeholder="Add username")
+                form(action="/add" method ="POST").input-group.mb-3
+                    input.form-control(type='text' name="username" placeholder="Add username")
                     .input-group-append
-                        button#button-addon2.btn.btn-outline-secondary(type='button') Add
+                        button#button-add.btn.btn-outline-secondary(type='submit' action="/add") Add
+                        // button.btn.btn-primary(type='submit') Begin Search
 
-                button.btn.btn-primary(type='submit') Begin Search
-        //display messages based on type
+                form(action="/clear" method ="POST")
+                    button(class="btn btn-danger" type="submit" style="float: right;") Clear
+    if (searchUsers.length > 0)
+        each restaurant in restaurants
+            .card.mx-5.mb-3
+                .card-body
+                    span= Math.round(restaurant.score * 100) + "% Match: " + restaurant.name
+            .jumbotron.mx-5.mb-5
+                h1.display-4= restaurant.name
+                p.lead
+                    if restaurant.priceIndex > 0.7
+                        span.badge.bg-danger $$$$
+                    else if restaurant.priceIndex > 0.5
+                        span.badge.bg-info $$$
+                    else if restaurant.priceIndex > 0.3
+                        span.badge.bg-info $$
+                    else
+                        span.badge.bg-success $
+                    = " " + restaurant.desc
+
+
+                hr.my-4
+                addr= restaurant.addr
+                p.lead
+                    a.btn.btn-primary.btn-lg.mt-4(href='#' role='button') Learn more
+

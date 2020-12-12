@@ -1,0 +1,6 @@
+install node modules, run start script "nodemon -r esm index.js"
+go to localhost:8080
+register, log in, then set user preferences to what you like
+register and login as other users and set other's preferences
+as any user, add some other user's names using the add username box
+refresh the page, and scroll down and you will see different options with a percentage score for preferences match between all users of group.
